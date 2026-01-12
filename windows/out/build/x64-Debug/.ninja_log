@@ -1,0 +1,16 @@
+# ninja log v6
+53	692	7896463052649022	build.ninja	d68cf0dd4862b693
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_windows.dll	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_export.h	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_windows.h	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_messenger.h	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_plugin_registrar.h	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/flutter_texture_registrar.h	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/cpp_client_wrapper/core_implementations.cc	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/cpp_client_wrapper/standard_codec.cc	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/cpp_client_wrapper/plugin_registrar.cc	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/cpp_client_wrapper/flutter_engine.cc	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/flutter/ephemeral/cpp_client_wrapper/flutter_view_controller.cc	63c64536403b0552
+33	3855	7896463061867407	flutter/_phony_	63c64536403b0552
+33	3855	7896463061867407	C:/Users/21943/Desktop/flutter_trial/windows/out/build/x64-Debug/flutter/_phony_	63c64536403b0552
+3883	4003	7896463100373204	runner/CMakeFiles/flutter_trial.dir/Runner.rc.res	19114a3351084d09
