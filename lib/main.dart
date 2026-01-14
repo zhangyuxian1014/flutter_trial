@@ -165,16 +165,80 @@ class BigCard extends StatelessWidget {
 }
 
 class FavoritePage extends StatelessWidget {
+  FavoritePage({super.key});
+
+  // 你可以按需调一下这个“每行占用高度”和“字号步进”
+  static const double _minFontSize = 20.0;
+  static const double _fontStep = 10.0;
+  static const double _gap = 20.0;
+  static const double _rowBaseHeight = 56.0; // 行内容的基础高度（不含间隔）
+  static const double _stride = _rowBaseHeight + _gap; // 一行 + 间隔
+
+  final ScrollController _controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Favorites Page'),
-        SizedBox(height: 20),
-        for (var pair in context.watch<MyAppState>().favorites)
-        Text(pair.asLowerCase),
-        SizedBox(height: 10),
-      ],
+    final favorites = context.watch<MyAppState>().favorites.toList();
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final viewportH = constraints.maxHeight;
+
+        // 计算屏幕里大概能显示多少“行”（包含间隔），据此决定中心能长到多大字号
+        final visibleCount = (viewportH / _stride).floor().clamp(1, 9999);
+        final stepsToCenter = (visibleCount - 1) ~/ 2; // 顶部到中心有多少级
+        final maxFontSize = _minFontSize + stepsToCenter * _fontStep;
+
+        return AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            final offset = _controller.hasClients ? _controller.offset : 0.0;
+            final viewportCenterY = viewportH / 2;
+
+            double fontSizeForIndex(int index) {
+              final itemCenterY = index * _stride + _stride / 2 - offset;
+              final diffSteps =
+                  ((itemCenterY - viewportCenterY) / _stride).round().abs();
+
+              final level = (stepsToCenter - diffSteps).clamp(0, stepsToCenter);
+              return _minFontSize + level * _fontStep;
+            }
+
+            return ListView.builder(
+              controller: _controller,
+              itemCount: favorites.length,
+              itemBuilder: (context, i) {
+                final pair = favorites[i];
+                final size = fontSizeForIndex(i);
+
+                return SizedBox(
+                  height: _stride,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: _gap),
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.favorite),
+                          const SizedBox(width: 10),
+                          Text(
+                            pair.asLowerCase,
+                            style: TextStyle(
+                              fontSize: size,
+                              fontWeight:
+                                  size >= maxFontSize ? FontWeight.w700 : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 }
